@@ -37,6 +37,8 @@ public class Extractor {
 					
 					opinion = removeNonAlphabetFromString(opinion);
 					
+					message = removeApostropheFromString(message);
+					
 					message = removeURLFromString(message);
 					
 					//Punctuation might be necessary to keep track of emoticons and exclamation marks.
@@ -126,6 +128,11 @@ public class Extractor {
 	 */
 	public static String removeNonAlphabetFromString(String string) {
 		string = string.replaceAll("[^A-Za-z ]", "");
+		return string;
+	}
+	
+	public static String removeApostropheFromString(String string) {
+		string = string.replaceAll("'", "");
 		return string;
 	}
 
