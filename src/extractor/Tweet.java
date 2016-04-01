@@ -22,11 +22,11 @@ public class Tweet {
 		this.positiveEmoticonCount = positiveEmoticonCount;
 		this.negativeEmoticonCount = negativeEmoticonCount;
 	}
-	
+
 	public String getMessage() {
 		return message;
 	}
-	
+
 	public String getOpinion() {
 		return opinion;
 	}
@@ -34,11 +34,11 @@ public class Tweet {
 	public int getPositiveNumber() {
 		return positiveNumber;
 	}
-	
+
 	public int getNegativeNumber() {
 		return negativeNumber;
 	}
-	
+
 	public int getNeutralNumber() {
 		return neutralNumber;
 	}
