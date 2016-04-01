@@ -16,6 +16,7 @@ public class Extractor {
 	private static String output_text_file = "output.arff";
 	private static String pos_neg_text_file = "pos_neg.txt";
 	private static Stop_Word stopWord = new Stop_Word();
+	private static Emoticon emoticon = new Emoticon();
 	private static ArrayList<Tweet> tweetList = new ArrayList<Tweet>();
 	private static HashMap<String, String> positiveArray = new HashMap<String, String>(2721);
 	private static HashMap<String, String> negativeArray = new HashMap<String, String>(4913);
@@ -65,8 +66,24 @@ public class Extractor {
 					
 					filteredMessage = filteredMessage.trim();
 					numberOfCategories = getNumberOfCategories(filteredMessage);
-					Tweet tweet = new Tweet(filteredMessage, opinion, numberOfCategories[0], numberOfCategories[1], numberOfCategories[2]);
 					
+					int questionMarkCount = countOccurrences(filteredMessage, "?");
+					int exclaimationMarkCount = countOccurrences(filteredMessage, "!");
+					
+					int positiveEmoticon = emoticon.getPositiveEmoticonCount(filteredMessage);
+					int negativeEmoticon = emoticon.getNegativeEmoticonCount(filteredMessage);
+
+					Tweet tweet = new Tweet(
+							filteredMessage, 
+							opinion,
+							numberOfCategories[0],
+							numberOfCategories[1],
+							numberOfCategories[2],
+							questionMarkCount, 
+							exclaimationMarkCount,
+							positiveEmoticon,
+							negativeEmoticon);
+
 					tweetList.add(tweet);
 				}
 				
@@ -94,6 +111,18 @@ public class Extractor {
 			out.write("@attribute sentence string");
 			out.newLine();
 			
+			out.write("@attribute numberOfQuestionMark NUMERIC");
+			out.newLine();
+			
+			out.write("@attribute numberOfExclaimationMark NUMERIC");
+			out.newLine();
+			
+			out.write("@attribute numberOfPositiveEmoticon NUMERIC");
+			out.newLine();
+			
+			out.write("@attribute numberOfNegativeEmoticon NUMERIC");
+			out.newLine();
+			
 			out.write("@attribute category {positive,negative,neutral,objective}");
 			out.newLine();
 			
@@ -111,7 +140,18 @@ public class Extractor {
 			
 			for (int i = 0; i < tweetList.size(); i++) {
 				Tweet tweet = tweetList.get(i);
-				out.write("\' " + tweet.getMessage() + " \'" + "," + tweet.getOpinion() + "," + tweet.getPositiveNumber() + "," + tweet.getNegativeNumber() + "," + tweet.getNeutralNumber());
+
+				out.write("\' " + tweet.getMessage() + " \'" + 
+					"," + tweet.getNumberOfQuestionMark() +
+					"," + tweet.getNumberOfExclaimationMark() +
+					"," + tweet.getPositiveEmoticonCount() +
+					"," + tweet.getNegativeEmoticonCount() +
+					"," + tweet.getOpinion() +
+					"," + tweet.getPositiveNumber() +
+					"," + tweet.getNegativeNumber() +
+					"," + tweet.getNeutralNumber()
+				);
+
 				out.newLine();
 			}
 			
@@ -229,5 +269,21 @@ public static void outputPositiveAndNegativeWords() {
 	public static String removeApostropheFromString(String string) {
 		string = string.replaceAll("'", "");
 		return string;
+	}
+
+	public static int countOccurrences(String sentence, String substring) {
+		int lastIndex = 0;
+		int count = 0;
+		
+		while(lastIndex != -1){
+
+		    lastIndex = sentence.indexOf(substring, lastIndex);
+
+		    if(lastIndex != -1){
+		        count ++;
+		        lastIndex += substring.length();
+		    }
+		} 
+		return count;
 	}
 }
