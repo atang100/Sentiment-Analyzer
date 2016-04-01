@@ -14,6 +14,7 @@ public class Extractor {
 	private static String input_text_file = "semeval_twitter_data.txt";
 	private static String output_text_file = "output.arff";
 	private static Stop_Word stopWord = new Stop_Word();
+	private static Emoticon emoticon = new Emoticon();
 	private static ArrayList<Tweet> tweetList = new ArrayList<Tweet>();
 	
 	public static void main(String args[]) {
@@ -57,7 +58,19 @@ public class Extractor {
 					
 					filteredMessage = filteredMessage.trim();
 					
-					Tweet tweet = new Tweet(filteredMessage, opinion);
+					int questionMarkCount = countOccurrences(filteredMessage, "?");
+					int exclaimationMarkCount = countOccurrences(filteredMessage, "!");
+					
+					int positiveEmoticon = emoticon.getPositiveEmoticonCount(filteredMessage);
+					int negativeEmoticon = emoticon.getNegativeEmoticonCount(filteredMessage);
+
+					Tweet tweet = new Tweet(
+							filteredMessage, 
+							opinion, 
+							questionMarkCount, 
+							exclaimationMarkCount,
+							positiveEmoticon,
+							negativeEmoticon);
 					tweetList.add(tweet);
 					
 				}
@@ -86,6 +99,18 @@ public class Extractor {
 			out.write("@attribute sentence string");
 			out.newLine();
 			
+			out.write("@attribute numberOfQuestionMark NUMERIC");
+			out.newLine();
+			
+			out.write("@attribute numberOfExclaimationMark NUMERIC");
+			out.newLine();
+			
+			out.write("@attribute numberOfPositiveEmoticon NUMERIC");
+			out.newLine();
+			
+			out.write("@attribute numberOfNegativeEmoticon NUMERIC");
+			out.newLine();
+			
 			out.write("@attribute category {positive,negative,neutral,objective}");
 			out.newLine();
 			
@@ -94,7 +119,13 @@ public class Extractor {
 			
 			for (int i = 0; i < tweetList.size(); i++) {
 				Tweet tweet = tweetList.get(i);
-				out.write("\' " + tweet.getMessage() + " \'" + "," + tweet.getOpinion());
+				out.write("\' " + tweet.getMessage() + " \'" + 
+					"," + tweet.getNumberOfQuestionMark() +
+					"," + tweet.getNumberOfExclaimationMark() +
+					"," + tweet.getPositiveEmoticonCount() +
+					"," + tweet.getNegativeEmoticonCount() +
+					"," + tweet.getOpinion()
+					);
 				out.newLine();
 			}
 			
@@ -136,7 +167,20 @@ public class Extractor {
 		return string;
 	}
 
-	/**
-	 * Adds filtered tweets to document containing filtered tweets.
-	 */
+	public static int countOccurrences(String sentence, String substring)
+	{
+		int lastIndex = 0;
+		int count = 0;
+		
+		while(lastIndex != -1){
+
+		    lastIndex = sentence.indexOf(substring, lastIndex);
+
+		    if(lastIndex != -1){
+		        count ++;
+		        lastIndex += substring.length();
+		    }
+		} 
+		return count;
+	}
 }
