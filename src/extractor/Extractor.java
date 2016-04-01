@@ -23,9 +23,9 @@ public class Extractor {
 
 	public static void main(String args[]) {
 		retrievePositiveAndNegativeWords();
-//		retreiveTweet();
-//		outputTweetInArffFormat();
-		outputPositiveAndNegativeWords();
+		retreiveTweet();
+		outputTweetInArffFormat();
+//		outputPositiveAndNegativeWords();
 	}
 
 	public static void retreiveTweet() {
@@ -161,6 +161,7 @@ public static void outputPositiveAndNegativeWords() {
 	
 	public static void retrievePositiveAndNegativeWords() {
 		System.out.println("Start Retreive Pos Neg and Neutral Words");
+		int count = 0;
 
 		try (BufferedReader br = new BufferedReader(new FileReader(pos_neg_text_file)))
 		{
@@ -168,15 +169,15 @@ public static void outputPositiveAndNegativeWords() {
 				String sCurrentLine;
 				while ((sCurrentLine = br.readLine()) != null) {
 					String[] attributes = sCurrentLine.split(" ");
-					String word = attributes[2].replaceAll("word1=", "");
-					String priorpolarity = attributes[5].replaceAll("priorpolarity=", "");
+					count++;
+					System.out.println(count);
 					
-					if (priorpolarity.equals("negative")) {
-						negativeArray.put(word, word);
-					} else if (priorpolarity.equals("positive")){
-						positiveArray.put(word, word);
-					} else if (priorpolarity.equals("neutral")) {
-						neutralArray.put(word, word);
+					if (attributes[1].equals("negative")) {
+						negativeArray.put(attributes[0], attributes[0]);
+					} else if (attributes[1].equals("positive")){
+						positiveArray.put(attributes[0], attributes[0]);
+					} else if (attributes[1].equals("neutral")) {
+						neutralArray.put(attributes[0], attributes[0]);
 					} else {
 						//Only get's here when the priorpolarity is both or extra attributes are included in the line
 						//This is only about 10 of the lines. 
