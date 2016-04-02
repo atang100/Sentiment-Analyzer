@@ -220,7 +220,7 @@ assignment.
 
 ----------------------------------------------------------------------------------------------------------------
 
-##Steps Taken In Part 1
+##Steps Taken In Part 2
 In the second part of the assignment we tried to improve upon our results achieved by removing the stop words.
 While it would be infeasible to list the results of all our executions, we will list the results of the most important
 executions to get demonstrate the increase in accuracy achieved by newly added features. All the result files can be found in
