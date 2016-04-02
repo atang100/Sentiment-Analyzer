@@ -1,4 +1,7 @@
 # Sentiment-Analyzer
+You can find the GitHub repository for this project at 
+- https://github.com/atang100/Sentiment-Analyzer
+
 ##Student Names and Numbers
 - Ryan O'Connor: 6852747
 - Andy Tang: 6815495
