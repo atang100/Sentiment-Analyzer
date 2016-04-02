@@ -543,9 +543,7 @@ Once the project has been imported click on the **Extractor.java** file in the `
 The main method contained in this file will call the necessary methods to remove all the stop words from the tweets
 (similarly to assignment 1) and remove any unwanted characters.
 
-The same class is responsible for implementing all the features. The **Tweet.java** class is an object that helps us abstract
-a tweet into it's own class along with some helper methods. The **Stop_Word.java** class, abstracts away all the stop word
-removal functionality. Same with the **Emoticon.java** class.
+The same class is responsible for implementing all the features. Meaning that the **Extractor.java** class contains the methods implementing the negative and positive word feature, emoticon feature, and the punctuation feature. The **Tweet.java** class is an object that helps us abstract a tweet into it's own class along with some helper methods. The **Stop_Word.java** class, abstracts away all the stop word removal functionality. Same with the **Emoticon.java** class. 
 
 Finally the **Extractor.java** class also adds the message back into an output.arff file along with all the features and
 categories.
