@@ -1,0 +1,127 @@
+=== Run information ===
+
+Scheme:weka.classifiers.meta.MultiBoostAB -C 3 -P 100 -S 1 -I 10 -W weka.classifiers.meta.Vote -- -S 1 -B "weka.classifiers.bayes.ComplementNaiveBayes -S 1.0" -B "weka.classifiers.functions.SMO -C 1.0 -L 0.001 -P 1.0E-12 -N 0 -V -1 -W 1 -K \"weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0\"" -R AVG
+Relation:     opinion-weka.filters.unsupervised.attribute.StringToWordVector-R1-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-O-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"
+Instances:    7230
+Attributes:   1093
+[list of attributes omitted]
+Test mode:10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+MultiBoostAB: Base classifiers and their weights: 
+
+Vote combines the probability distributions of these base learners:
+	weka.classifiers.bayes.ComplementNaiveBayes -S 1.0
+	weka.classifiers.functions.SMO -C 1.0 -L 0.001 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+using the 'Average of Probabilities' combination rule 
+
+
+Weight: 0.43
+
+Vote combines the probability distributions of these base learners:
+	weka.classifiers.bayes.ComplementNaiveBayes -S 1.0
+	weka.classifiers.functions.SMO -C 1.0 -L 0.001 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+using the 'Average of Probabilities' combination rule 
+
+
+Weight: 0.18
+
+Vote combines the probability distributions of these base learners:
+	weka.classifiers.bayes.ComplementNaiveBayes -S 1.0
+	weka.classifiers.functions.SMO -C 1.0 -L 0.001 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+using the 'Average of Probabilities' combination rule 
+
+
+Weight: 0.09
+
+Vote combines the probability distributions of these base learners:
+	weka.classifiers.bayes.ComplementNaiveBayes -S 1.0
+	weka.classifiers.functions.SMO -C 1.0 -L 0.001 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+using the 'Average of Probabilities' combination rule 
+
+
+Weight: 0.61
+
+Vote combines the probability distributions of these base learners:
+	weka.classifiers.bayes.ComplementNaiveBayes -S 1.0
+	weka.classifiers.functions.SMO -C 1.0 -L 0.001 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+using the 'Average of Probabilities' combination rule 
+
+
+Weight: 0.3
+
+Vote combines the probability distributions of these base learners:
+	weka.classifiers.bayes.ComplementNaiveBayes -S 1.0
+	weka.classifiers.functions.SMO -C 1.0 -L 0.001 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+using the 'Average of Probabilities' combination rule 
+
+
+Weight: 0.22
+
+Vote combines the probability distributions of these base learners:
+	weka.classifiers.bayes.ComplementNaiveBayes -S 1.0
+	weka.classifiers.functions.SMO -C 1.0 -L 0.001 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+using the 'Average of Probabilities' combination rule 
+
+
+Weight: 0.6
+
+Vote combines the probability distributions of these base learners:
+	weka.classifiers.bayes.ComplementNaiveBayes -S 1.0
+	weka.classifiers.functions.SMO -C 1.0 -L 0.001 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+using the 'Average of Probabilities' combination rule 
+
+
+Weight: 0.28
+
+Vote combines the probability distributions of these base learners:
+	weka.classifiers.bayes.ComplementNaiveBayes -S 1.0
+	weka.classifiers.functions.SMO -C 1.0 -L 0.001 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+using the 'Average of Probabilities' combination rule 
+
+
+Weight: 0.18
+
+Vote combines the probability distributions of these base learners:
+	weka.classifiers.bayes.ComplementNaiveBayes -S 1.0
+	weka.classifiers.functions.SMO -C 1.0 -L 0.001 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+using the 'Average of Probabilities' combination rule 
+
+
+Weight: 0.62
+
+Number of performed Iterations: 10
+
+
+Time taken to build model: 637.49 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances        3910               54.0802 %
+Incorrectly Classified Instances      3320               45.9198 %
+Kappa statistic                          0.3326
+Mean absolute error                      0.2558
+Root mean squared error                  0.4082
+Relative absolute error                 73.8824 %
+Root relative squared error             98.1029 %
+Total Number of Instances             7230     
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.741     0.266      0.699     0.741     0.719      0.789    positive
+                 0.476     0.139      0.426     0.476     0.45       0.738    negative
+                 0.242     0.117      0.36      0.242     0.29       0.652    neutral
+                 0.441     0.127      0.385     0.441     0.411      0.755    objective
+Weighted Avg.    0.541     0.19       0.53      0.541     0.532      0.745
+
+=== Confusion Matrix ===
+
+    a    b    c    d   <-- classified as
+ 2432  328  247  277 |    a = positive
+  351  615  190  137 |    b = negative
+  464  344  375  364 |    c = neutral
+  234  155  229  488 |    d = objective
+
